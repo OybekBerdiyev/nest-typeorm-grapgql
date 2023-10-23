@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { Category } from "../../category/entities/category.entity";
 
 @ObjectType()
 @Entity('product')
@@ -35,5 +36,9 @@ export class Product {
     @Field()
     @UpdateDateColumn()
     updateAt: Date
+
+    @ManyToOne((type)=> Category, (category)=> category.product)
+    @Field((type)=> Category)
+    category: Category;
 
 }

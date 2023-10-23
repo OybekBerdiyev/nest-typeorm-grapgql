@@ -7,6 +7,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ProductModule } from './product/product.module';
 import { CategoryModule } from './category/category.module';
 import { ShopsModule } from './shops/shops.module';
+import { PostModule } from './post/post.module';
 
 
 @Module({
@@ -35,7 +36,7 @@ import { ShopsModule } from './shops/shops.module';
         autoLoadEntities: true,
         logging: false,
       })
-    }), UsersModule, ProductModule, CategoryModule, ShopsModule 
+    }), UsersModule, ProductModule, CategoryModule, ShopsModule, PostModule 
   ],
   controllers: [],
   providers: [],

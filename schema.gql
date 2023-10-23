@@ -4,10 +4,17 @@
 
 type Category {
   id: ID!
+  product: [Product!]!
   title: String!
 }
 
 input CreateCategoryDto {
+  title: String!
+}
+
+input CreatePostDto {
+  author: Int
+  content: String!
   title: String!
 }
 
@@ -36,7 +43,8 @@ scalar DateTime
 
 type Mutation {
   createCategory(createCategory: CreateCategoryDto!): Category!
-  createProduct(createProduct: CreateProductDto!): Product!
+  createPost(authorId: Float!, createPost: CreatePostDto!): Post!
+  createProduct(categoryId: Float!, createProduct: CreateProductDto!): Product!
   createShop(createShop: CreateShopDto!): Shop!
   createUser(createUser: CreateUserDto!): User!
   removeCategory(id: ID!): String!
@@ -49,7 +57,15 @@ type Mutation {
   updateUser(id: ID!, updateUser: UpdateUserDto!): User!
 }
 
+type Post {
+  author: User!
+  content: String!
+  id: ID!
+  title: String!
+}
+
 type Product {
+  category: Category!
   count: Float!
   createAt: DateTime!
   description: String!
@@ -62,6 +78,7 @@ type Product {
 
 type Query {
   findAllCategory: [Category!]!
+  findAllPost: [Post!]!
   findAllProduct: [Product!]!
   findAllShop: [Shop!]!
   findAllUser: [User!]!
@@ -106,5 +123,6 @@ type User {
   email: String!
   id: ID!
   name: String
+  posts: [Post!]!
   updateAt: DateTime!
 }

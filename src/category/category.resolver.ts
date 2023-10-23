@@ -19,17 +19,17 @@ export class CategoryResolver {
   }
 
   @Query(() => Category)
-  async findOneCategory(@Args('id', { type: () => ID }) id: string) {
-    return this.categoryService.findOne(+id);
+  async findOneCategory(@Args('id', { type: () => ID }) id: number) {
+    return this.categoryService.findOne(id);
   }
 
   @Mutation(() => Category)
-  async updateCategory(@Args('id', { type: () => ID }) id: string, @Args("updateCategory") updateCategoryDto: UpdateCategoryDto) {
-    return this.categoryService.update(+id, updateCategoryDto);
+  async updateCategory(@Args('id', { type: () => ID }) id: number, @Args("updateCategory") updateCategoryDto: UpdateCategoryDto) {
+    return this.categoryService.update(id, updateCategoryDto);
   }
 
   @Mutation(() => String)
-  async removeCategory(@Args('id', { type: () => ID }) id: string) {
-    return this.categoryService.remove(+id);
+  async removeCategory(@Args('id', { type: () => ID }) id: number) {
+    return this.categoryService.remove(id);
   }
 }
